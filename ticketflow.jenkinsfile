@@ -1,0 +1,38 @@
+pipeline {
+  agent any
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+  }
+
+  tools {
+    jdk 'jdk21'
+    nodejs 'NodeJS'
+  }
+
+  environment {
+    MAVEN_OPTS = '-Dmaven.repo.local=.m2/repository'
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        checkout scm
+      }
+    }
+
+    stage('Backend - Test') {
+      steps {
+        dir('backend') {
+          bat 'mvn -B -ntp test'
+        }
+      }
+      post {
+        always {
+          junit allowEmptyResults: true, testResults: 'backend/target/surefire-reports/*.xml'
+        }
+      }
+    }
+  }
+}

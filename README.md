@@ -18,7 +18,7 @@ Ce dépôt monorepo fournit un projet complet (squelette exécutable) destiné �
 ### Backend
 ```bash
 cd backend
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn -Dspring-boot.run.profiles=dev spring-boot:run 
 ```
 
 - API: http://localhost:8080/api
