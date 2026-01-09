@@ -4,7 +4,7 @@ import com.ticketflow.domain.TicketPriority;
 import com.ticketflow.domain.TicketStatus;
 
 import java.time.Instant;
-
+// Record for git modif on ticket priority
 public record TicketDto(
         Long id,
         String title,
